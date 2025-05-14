@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "name": "nodejs_ecomerce_server",
+  "version": "1.0.0",
+  "description": "This is the Ecomerce Server that use Nodejs with Express.",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Striker",
+  "license": "ISC"
+}

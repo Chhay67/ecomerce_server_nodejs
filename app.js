@@ -4,21 +4,21 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+const env = process.env;
+const apiPrefix = env.API_PREFIX;
 const app = express();
 
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(cors());
 // app.options('*', cors()); 
+const authRouter = require('./routes/auth');
+
+app.use(`${apiPrefix}/`,authRouter);
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-const env = process.env;
-const port = env.PORT || 3000;
-const hostname = env.HOSTNAME || 'localhost';
+const port = env.PORT;
+const hostname = env.HOST;
 
 mongoose.connect(env.MONGODB_CONNECTION_STRING).then(() => {
   console.log('Connected to MongoDB');
@@ -27,5 +27,5 @@ mongoose.connect(env.MONGODB_CONNECTION_STRING).then(() => {
 } );
 
 app.listen(port, hostname, () => {
-  console.log(`Server is running on port ${port} and hostname ${hostname}`);
+  console.log(`Server is running on port ${port} and hostname ${hostname} apiPrefix ${apiPrefix}`);
 });

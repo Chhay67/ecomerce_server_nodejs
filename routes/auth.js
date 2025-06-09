@@ -10,6 +10,9 @@ const validatorUser = [
 .withMessage('Please enter a valid phone number'),
 ];
 
+
+router.get('verify-token',authController.verifyToken);
+
 router.post('/login',authController.login);
 
 router.post('/register',validatorUser,authController.register);
@@ -19,5 +22,7 @@ router.post('/forgot-password', authController.forgetPassword);
 router.post('/reset-password', authController.resetPassword);
 
 router.post('/verify-otp', authController.verifyPasswordResetOTP);
+
+
 
 module.exports = router;

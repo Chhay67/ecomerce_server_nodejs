@@ -16,12 +16,10 @@ app.use(authJwt());
 app.use(errorHandler)
 // app.options('*', cors()); 
 const authRouter = require('./routes/auth');
-
+const userRouter = require('./routes/users');
 
 app.use(`${apiPrefix}/`, authRouter);
-app.get(`${apiPrefix}/users`, (req, res) => {
-  return res.status(200).json({ message: 'Users endpoint is working' });
-});
+app.use(`${apiPrefix}/users`, userRouter);
 
 const port = env.PORT;
 const hostname = env.HOST;
